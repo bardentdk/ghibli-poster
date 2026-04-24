@@ -3,6 +3,8 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import stripeRoutes from './routes/stripe.js'
 import ordersRoutes from './routes/orders.js'
+import emailsRoutes from './routes/emails.js'
+import invoicesRoutes from './routes/invoices.js'
 
 dotenv.config()
 
@@ -14,9 +16,7 @@ app.use(cors({
   credentials: true,
 }))
 
-// Important : le webhook Stripe a besoin du raw body, on le gère avant le JSON parser
 app.use('/api/stripe/webhook', express.raw({ type: 'application/json' }))
-
 app.use(express.json({ limit: '10mb' }))
 
 app.get('/api/health', (req, res) => {
@@ -25,6 +25,9 @@ app.get('/api/health', (req, res) => {
 
 app.use('/api/stripe', stripeRoutes)
 app.use('/api/orders', ordersRoutes)
+app.use('/api/emails', emailsRoutes)
+app.use('/api/invoices', invoicesRoutes)
+
 
 app.use((err, req, res, next) => {
   console.error('Error:', err)
@@ -34,5 +37,5 @@ app.use((err, req, res, next) => {
 })
 
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`)
+  console.log(`✓ Server running on http://localhost:${PORT}`)
 })

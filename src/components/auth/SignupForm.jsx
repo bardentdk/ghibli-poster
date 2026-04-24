@@ -9,6 +9,8 @@ import FormInput from '../ui/FormInput'
 import PasswordStrength from '../ui/PasswordStrength'
 import { signupSchema } from '../../utils/validationSchemas'
 import { useAuthStore } from '../../store/authStore'
+import { clientEmailService } from '../../services/emailService'
+
 
 const SignupForm = ({ onSuccess, showTitle = true, compact = false }) => {
   const [loading, setLoading] = useState(false)
@@ -32,11 +34,21 @@ const SignupForm = ({ onSuccess, showTitle = true, compact = false }) => {
   const onSubmit = async (data) => {
     setLoading(true)
     try {
-      await signUp({
+      const signupData = await signUp({
         email: data.email,
         password: data.password,
         fullName: data.fullName,
       })
+
+      // Envoi de l'email de bienvenue (non-bloquant)
+      if (signupData?.user?.id) {
+        clientEmailService.sendWelcome({
+          userId: signupData.user.id,
+          email: data.email,
+          userName: data.fullName,
+        }).catch((err) => console.warn('Email bienvenue échoué:', err))
+      }
+
       setSuccess(true)
       toast.success('Compte créé avec succès !')
       

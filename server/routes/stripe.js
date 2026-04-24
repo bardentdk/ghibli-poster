@@ -233,10 +233,10 @@ router.post('/webhook', async (req, res) => {
           })
           .eq('id', orderId)
 
-        // Mettre à jour le statut du poster
+        // Récupération de la commande mise à jour avec les détails
         const { data: order } = await supabase
           .from('orders')
-          .select('poster_id')
+          .select('*, posters(*)')
           .eq('id', orderId)
           .single()
 
@@ -247,7 +247,30 @@ router.post('/webhook', async (req, res) => {
             .eq('id', order.poster_id)
         }
 
-        // TODO: Déclencher la génération de facture et email de confirmation
+        // Génération asynchrone de la facture et envoi des emails
+        if (order) {
+          // On ne bloque pas la réponse webhook
+          Promise.resolve().then(async () => {
+            try {
+              // 1. Générer la facture
+              const { invoiceService } = await import('../services/invoiceService.js')
+              const invoice = await invoiceService.generateForOrder(order.id)
+              console.log('Facture générée:', invoice.invoice_number)
+
+              // 2. Envoyer l'email de confirmation avec facture en PJ
+              const { emailService } = await import('../services/emailService.js')
+              await emailService.sendOrderConfirmation({
+                order,
+                poster: order.posters,
+                invoicePdfUrl: invoice.pdf_url,
+              })
+              console.log('Email de confirmation envoyé à:', order.shipping_email)
+            } catch (err) {
+              console.error('Erreur post-paiement (facture/email):', err.message)
+            }
+          })
+        }
+
         break
       }
 
