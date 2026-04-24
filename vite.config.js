@@ -14,13 +14,22 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          three: ['three'],
-          'react-three': [
-            '@react-three/fiber',
-            '@react-three/drei',
-            '@react-three/postprocessing',
-          ],
+        manualChunks(id) {
+          if (id.includes('node_modules/three')) {
+            return 'three'
+          }
+
+          if (
+            id.includes('node_modules/@react-three/fiber') ||
+            id.includes('node_modules/@react-three/drei') ||
+            id.includes('node_modules/@react-three/postprocessing')
+          ) {
+            return 'react-three'
+          }
+
+          if (id.includes('node_modules')) {
+            return 'vendor'
+          }
         },
       },
     },
