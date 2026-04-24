@@ -11,12 +11,12 @@ const ShowcaseSection = () => {
   })
 
   const showcaseItems = [
-    { label: 'Affiche Exemple 1', size: 'large' },
-    { label: 'Affiche Exemple 2', size: 'medium' },
-    { label: 'Affiche Exemple 3', size: 'medium' },
-    { label: 'Affiche Exemple 4', size: 'small' },
-    { label: 'Affiche Exemple 5', size: 'medium' },
-    { label: 'Affiche Exemple 6', size: 'large' },
+    { label: 'Affiche Exemple 1', size: 'large', src: '/assets/img/4.jpg' },
+    { label: 'Affiche Exemple 2', size: 'medium', src: '/assets/img/6.jpg' },
+    { label: 'Affiche Exemple 3', size: 'medium', src: '/assets/img/7.jpg' },
+    { label: 'Affiche Exemple 4', size: 'small', src: '/assets/img/13.jpg' },
+    { label: 'Affiche Exemple 5', size: 'medium', src: '/assets/img/14.jpg' },
+    { label: 'Affiche Exemple 6', size: 'large', src: '/assets/img/4.jpg' },
   ]
 
   return (
@@ -64,6 +64,7 @@ const ShowcaseSection = () => {
             >
               <div className="relative overflow-hidden rounded-2xl shadow-xl group-hover:shadow-2xl transition-all duration-500 group-hover:-translate-y-1">
                 <ImagePlaceholder
+                  src={item.src}
                   label={item.label}
                   aspectRatio={item.size === 'large' ? '1/1' : '3/4'}
                   rounded="rounded-2xl"

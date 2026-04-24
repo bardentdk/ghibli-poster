@@ -112,6 +112,7 @@ const HeroSection = () => {
                 aspectRatio="3/4"
                 className="relative shadow-2xl"
                 rounded="rounded-3xl"
+                src="/assets/img/7.jpg"
               />
             </motion.div>
 
@@ -123,8 +124,9 @@ const HeroSection = () => {
               <ImagePlaceholder
                 label="Detail 1"
                 aspectRatio="1/1"
-                className="shadow-2xl border-4 border-white"
+                className="shadow-2xl border-4 border-none"
                 rounded="rounded-2xl"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQURXSVJcJLHRlQApPQ2jJBniDiuSsdos84MA&s"
               />
             </motion.div>
 
@@ -134,9 +136,10 @@ const HeroSection = () => {
               className="absolute -top-8 -right-8 w-32 h-32 hidden md:block"
             >
               <ImagePlaceholder
+                src="https://upload.wikimedia.org/wikipedia/en/2/29/OpenAI_Sora_icon.png"
                 label="Detail 2"
                 aspectRatio="1/1"
-                className="shadow-2xl border-4 border-white"
+                className="shadow-2xl border-4 border-none"
                 rounded="rounded-2xl"
               />
             </motion.div>

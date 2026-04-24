@@ -55,3 +55,37 @@ export const updatePasswordSchema = z.object({
   message: 'Les mots de passe ne correspondent pas',
   path: ['confirmPassword'],
 })
+
+export const shippingAddressSchema = z.object({
+  name: z
+    .string()
+    .min(1, 'Nom requis')
+    .min(2, 'Nom trop court')
+    .max(100, 'Nom trop long'),
+  email: z
+    .string()
+    .min(1, 'Email requis')
+    .email('Email invalide'),
+  phone: z
+    .string()
+    .optional()
+    .refine(
+      (val) => !val || /^(\+|0)[1-9]\d{8,}$/.test(val.replace(/\s/g, '')),
+      'Numéro de téléphone invalide'
+    ),
+  addressLine1: z
+    .string()
+    .min(1, 'Adresse requise')
+    .max(200, 'Adresse trop longue'),
+  addressLine2: z.string().max(200).optional(),
+  city: z
+    .string()
+    .min(1, 'Ville requise')
+    .max(100, 'Ville trop longue'),
+  postalCode: z
+    .string()
+    .min(1, 'Code postal requis')
+    .regex(/^[0-9]{4,10}$/, 'Code postal invalide'),
+  country: z.string().min(1, 'Pays requis').default('France'),
+  notes: z.string().max(500).optional(),
+})

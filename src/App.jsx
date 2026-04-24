@@ -3,6 +3,10 @@ import { Routes, Route } from 'react-router-dom'
 import Layout from './components/layout/Layout'
 import HomePage from './pages/HomePage'
 import CreatePage from './pages/CreatePage'
+import DraftsPage from './pages/DraftsPage'
+import CheckoutPage from './pages/CheckoutPage'
+import OrderSuccessPage from './pages/OrderSuccessPage'
+import OrderCancelPage from './pages/OrderCancelPage'
 import LoginPage from './pages/LoginPage'
 import SignupPage from './pages/SignupPage'
 import ForgotPasswordPage from './pages/ForgotPasswordPage'
@@ -28,6 +32,10 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="create" element={<CreatePage />} />
+          <Route path="drafts" element={<DraftsPage />} />
+          <Route path="checkout" element={<CheckoutPage />} />
+          <Route path="orders/success" element={<OrderSuccessPage />} />
+          <Route path="orders/cancel" element={<OrderCancelPage />} />
         </Route>
       </Routes>
 

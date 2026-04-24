@@ -16,8 +16,11 @@ const SCALE = 1
 const Poster3D = ({
   imageUrl,
   title,
-  producers,
-  description,
+  tagline,
+  directors,
+  releaseDate,
+  credits,
+  designConfig,
   format = 'A4',
   autoRotate = true,
 }) => {
@@ -27,8 +30,11 @@ const Poster3D = ({
   const texture = usePosterTexture({
     imageUrl,
     title,
-    producers,
-    description,
+    tagline,
+    directors,
+    releaseDate,
+    credits,
+    designConfig,
   })
 
   const dimensions = FORMAT_DIMENSIONS[format]

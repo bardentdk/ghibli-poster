@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, User, ShoppingBag, LogOut, Palette, Home, Package } from 'lucide-react'
-import Logo from '../ui/Logo'
+// import Logo from '../ui/Logo'
 import { useAuthStore } from '../../store/authStore'
 import toast from 'react-hot-toast'
 
+
 const Navbar = () => {
+  const Logo = '/assets/logo.png'
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [userMenuOpen, setUserMenuOpen] = useState(false)
@@ -37,9 +39,9 @@ const Navbar = () => {
 
   const navLinks = [
     { to: '/', label: 'Accueil', icon: Home },
-    { to: '/create', label: 'Créer', icon: Palette },
-    { to: '/gallery', label: 'Galerie', icon: Package },
-  ]
+    { to: '/create?new=true', label: 'Créer', icon: Palette },
+    ...(user ? [{ to: '/drafts', label: 'Mes brouillons', icon: Package }] : []),
+  ];
 
   return (
     <>
@@ -55,8 +57,8 @@ const Navbar = () => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            <Logo />
-
+            {/* <Logo /> */}
+            <img src={Logo} alt="" width={150} />
             <div className="hidden md:flex items-center gap-1">
               {navLinks.map((link) => {
                 const Icon = link.icon

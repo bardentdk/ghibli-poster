@@ -20,8 +20,11 @@ const LoadingFallback = () => {
 const PosterScene = ({
   imageUrl,
   title,
-  producers,
-  description,
+  tagline,
+  directors,
+  releaseDate,
+  credits,
+  designConfig,
   format = 'A4',
   autoRotate = true,
   interactive = true,
@@ -50,8 +53,11 @@ const PosterScene = ({
         <Poster3D
           imageUrl={imageUrl}
           title={title}
-          producers={producers}
-          description={description}
+          tagline={tagline}
+          directors={directors}
+          releaseDate={releaseDate}
+          credits={credits}
+          designConfig={designConfig}
           format={format}
           autoRotate={autoRotate && !interactive}
         />

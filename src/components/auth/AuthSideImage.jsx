@@ -34,8 +34,9 @@ const AuthSideImage = ({ variant = 'login' }) => {
         <ImagePlaceholder
           label="Auth Side Image"
           aspectRatio="auto"
-          className="w-full h-full"
+          className="w-full h-full grayscale"
           rounded="rounded-none"
+          src="https://i.pinimg.com/736x/75/6e/71/756e7177772be07c38a25a1e32655433.jpg"
         />
       </div>
 

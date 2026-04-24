@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
 import { ScissorsLineDashed, CircleFadingPlus, Bird, Mail, MapPin, Heart } from 'lucide-react'
-import Logo from '../ui/Logo'
+// import Logo from '../ui/Logo'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
-
+  const Logo = '/assets/logo.png'
   const footerSections = [
     {
       title: 'Produit',
@@ -42,7 +42,8 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           <div className="lg:col-span-2 space-y-6">
-            <Logo />
+            {/* <Logo /> */}
+            <img src={Logo} alt="" width={200} />
             <p className="text-ghibli-deep/70 leading-relaxed max-w-md">
               Transformez vos souvenirs en œuvres d'art uniques inspirées de l'univers magique
               Ghibli. Des affiches personnalisées pour sublimer votre intérieur.
