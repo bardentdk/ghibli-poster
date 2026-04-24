@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Quicksand:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-gray-200;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-body antialiased;
+    background: linear-gradient(135deg, #FFF8DC 0%, #F4E4BC 100%);
+    min-height: 100vh;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-ghibli-cream;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-ghibli-forest rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-ghibli-moss;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/30 backdrop-blur-md border border-white/20;
+  }
+
+  .glass-dark {
+    @apply bg-black/30 backdrop-blur-md border border-white/10;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 bg-gradient-to-r from-ghibli-forest to-ghibli-moss text-white 
+           rounded-full font-semibold shadow-lg hover:shadow-xl 
+           transform hover:scale-105 transition-all duration-300
+           active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 bg-white/80 backdrop-blur-sm text-ghibli-deep 
+           rounded-full font-semibold border-2 border-ghibli-forest
+           hover:bg-ghibli-forest hover:text-white
+           transform hover:scale-105 transition-all duration-300
+           active:scale-95;
+  }
+
+  .card-ghibli {
+    @apply bg-white/70 backdrop-blur-lg rounded-2xl shadow-xl 
+           border border-white/50 p-6;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-ghibli-forest via-ghibli-sunset to-ghibli-sky 
+           bg-clip-text text-transparent;
+  }
+
+  .shimmer-effect {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.4) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite linear;
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .text-shadow-lg {
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+  }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+}
+
+.cloud {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  filter: blur(3px);
+  animation: float 20s infinite linear;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.border-3 {
+  border-width: 3px;
+}
+
+.scale-102 {
+  transform: scale(1.02);
+}
